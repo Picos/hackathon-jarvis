@@ -136,7 +136,7 @@ dotnet run --project src/TeamsAssistBot.Api
       "SubscriptionKey": "your-speech-key",
       "Region": "eastus",
       "Language": "en-US",
-      "WakeWord": "Hey AssistBot"
+      "WakeWord": "Hey Jarvis"
     },
     "OpenAI": {
       "Endpoint": "https://your-openai.openai.azure.com/",
@@ -184,15 +184,15 @@ docker run -p 8080:80 \
 
 1. **Text Messages**: Send direct messages to the bot in Teams chat
 2. **Meeting Participation**: The bot automatically joins when invited to meetings
-3. **Voice Interaction**: Say "Hey AssistBot" followed by your question during meetings
+3. **Voice Interaction**: Say "Hey Jarvis" followed by your question during meetings
 4. **Meeting Assistant**: The bot can provide meeting summaries, answer questions, and assist with tasks
 
 ### Supported Commands
 
-- `Hey AssistBot, what's the weather?`
-- `Hey AssistBot, summarize this meeting`
-- `Hey AssistBot, schedule a follow-up meeting`
-- `Hey AssistBot, what are the action items?`
+- `Hey Jarvis, what's the weather?`
+- `Hey Jarvis, summarize this meeting`
+- `Hey Jarvis, schedule a follow-up meeting`
+- `Hey Jarvis, what are the action items?`
 
 ## API Endpoints
 

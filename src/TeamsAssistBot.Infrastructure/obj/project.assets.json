@@ -9780,24 +9780,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\AlexandrineLOUMOUAMO\\.nuget\\packages\\": {},
+    "C:\\Users\\BaptisteBEAUPUY-MOUR\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Powell_Projects\\Hackathon-Jarvis\\hackathon-jarvis-1\\src\\TeamsAssistBot.Infrastructure\\TeamsAssistBot.Infrastructure.csproj",
+      "projectUniqueName": "C:\\DEV\\Sources\\Repos\\Hackathon\\Jarvis\\hackathon-jarvis\\src\\TeamsAssistBot.Infrastructure\\TeamsAssistBot.Infrastructure.csproj",
       "projectName": "TeamsAssistBot.Infrastructure",
-      "projectPath": "C:\\Powell_Projects\\Hackathon-Jarvis\\hackathon-jarvis-1\\src\\TeamsAssistBot.Infrastructure\\TeamsAssistBot.Infrastructure.csproj",
-      "packagesPath": "C:\\Users\\AlexandrineLOUMOUAMO\\.nuget\\packages\\",
-      "outputPath": "C:\\Powell_Projects\\Hackathon-Jarvis\\hackathon-jarvis-1\\src\\TeamsAssistBot.Infrastructure\\obj\\",
+      "projectPath": "C:\\DEV\\Sources\\Repos\\Hackathon\\Jarvis\\hackathon-jarvis\\src\\TeamsAssistBot.Infrastructure\\TeamsAssistBot.Infrastructure.csproj",
+      "packagesPath": "C:\\Users\\BaptisteBEAUPUY-MOUR\\.nuget\\packages\\",
+      "outputPath": "C:\\DEV\\Sources\\Repos\\Hackathon\\Jarvis\\hackathon-jarvis\\src\\TeamsAssistBot.Infrastructure\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Powell_Projects\\Hackathon-Jarvis\\hackathon-jarvis-1\\NuGet.Config",
-        "C:\\Users\\AlexandrineLOUMOUAMO\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\DEV\\Sources\\Repos\\Hackathon\\Jarvis\\hackathon-jarvis\\NuGet.Config",
+        "C:\\Users\\BaptisteBEAUPUY-MOUR\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -9811,8 +9811,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Powell_Projects\\Hackathon-Jarvis\\hackathon-jarvis-1\\src\\TeamsAssistBot.Core\\TeamsAssistBot.Core.csproj": {
-              "projectPath": "C:\\Powell_Projects\\Hackathon-Jarvis\\hackathon-jarvis-1\\src\\TeamsAssistBot.Core\\TeamsAssistBot.Core.csproj"
+            "C:\\DEV\\Sources\\Repos\\Hackathon\\Jarvis\\hackathon-jarvis\\src\\TeamsAssistBot.Core\\TeamsAssistBot.Core.csproj": {
+              "projectPath": "C:\\DEV\\Sources\\Repos\\Hackathon\\Jarvis\\hackathon-jarvis\\src\\TeamsAssistBot.Core\\TeamsAssistBot.Core.csproj"
             }
           }
         }
@@ -9827,7 +9827,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.200"
+      "SdkAnalysisLevel": "9.0.100"
     },
     "frameworks": {
       "net8.0": {
@@ -9918,7 +9918,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.107/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

@@ -178,7 +178,7 @@ public class TeamsMeetingService : ITeamsMeetingService
                 { 
                     "User 1", 
                     "User 2", 
-                    "AssistBot" 
+                    "Jarvis" 
                 });
             }
             return new List<string>();

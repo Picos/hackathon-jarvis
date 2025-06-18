@@ -192,10 +192,10 @@ public class AzureOpenAIService : IAIService
     private string BuildSystemPrompt(string context = "")
     {
         var systemPrompt = new StringBuilder();
-        systemPrompt.AppendLine("You are AssistBot, an AI assistant integrated into Microsoft Teams meetings.");
+        systemPrompt.AppendLine("You are Jarvis, an AI assistant integrated into Microsoft Teams meetings.");
         systemPrompt.AppendLine("You help users by answering questions, providing information, and assisting with meeting-related tasks.");
         systemPrompt.AppendLine("Keep your responses concise, helpful, and professional.");
-        systemPrompt.AppendLine("You can only respond when explicitly addressed with 'Hey AssistBot' or similar wake words.");
+        systemPrompt.AppendLine("You can only respond when explicitly addressed with 'Hey Jarvis' or similar wake words.");
         systemPrompt.AppendLine("If the user's request is unclear, ask for clarification.");
         systemPrompt.AppendLine("Focus on being helpful while being mindful of meeting context.");
 

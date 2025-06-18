@@ -60,7 +60,7 @@ public class TeamsAssistBotHandler : TeamsActivityHandler
 
             // Add to conversation history
             AddToConversationHistory(conversationId, userMessage);
-            AddToConversationHistory(conversationId, $"AssistBot: {contextualResponse}");
+            AddToConversationHistory(conversationId, $"Jarvis: {contextualResponse}");
 
             // Send response
             await turnContext.SendActivityAsync(MessageFactory.Text(contextualResponse), cancellationToken);
@@ -76,8 +76,8 @@ public class TeamsAssistBotHandler : TeamsActivityHandler
 
     protected override async Task OnMembersAddedAsync(IList<ChannelAccount> membersAdded, ITurnContext<IConversationUpdateActivity> turnContext, CancellationToken cancellationToken)
     {
-        var welcomeText = "Hello! I'm AssistBot, your AI assistant for this Teams meeting. " +
-                         "You can interact with me by saying 'Hey AssistBot' followed by your question or request. " +
+        var welcomeText = "Hello! I'm Jarvis, your AI assistant for this Teams meeting. " +
+                         "You can interact with me by saying 'Hey Jarvis' followed by your question or request. " +
                          "I can help answer questions, provide information, and assist with meeting-related tasks.";
 
         foreach (var member in membersAdded)
@@ -95,11 +95,11 @@ public class TeamsAssistBotHandler : TeamsActivityHandler
         {
             _logger.LogInformation("Teams meeting started: {MeetingId}", meetingStartEventDetails.Id);
 
-            var callId = await _meetingService.JoinMeetingAsync(meetingStartEventDetails.JoinUrl?.ToString() ?? "", "AssistBot");
+            var callId = await _meetingService.JoinMeetingAsync(meetingStartEventDetails.JoinUrl?.ToString() ?? "", "Jarvis");
             await _meetingService.StartMediaStreamingAsync(callId);
 
-            var welcomeMessage = "AssistBot has joined the meeting and is ready to assist. " +
-                               "Say 'Hey AssistBot' to get my attention!";
+            var welcomeMessage = "Jarvis has joined the meeting and is ready to assist. " +
+                               "Say 'Hey Jarvis' to get my attention!";
             
             await turnContext.SendActivityAsync(MessageFactory.Text(welcomeMessage), cancellationToken);
         }
@@ -208,7 +208,7 @@ public class TeamsAssistBotHandler : TeamsActivityHandler
 
     protected override async Task OnTeamsChannelCreatedAsync(ChannelInfo channelInfo, TeamInfo teamInfo, ITurnContext<IConversationUpdateActivity> turnContext, CancellationToken cancellationToken)
     {
-        var welcomeMessage = $"Welcome to the {channelInfo.Name} channel! I'm AssistBot, ready to help with your team activities.";
+        var welcomeMessage = $"Welcome to the {channelInfo.Name} channel! I'm Jarvis, ready to help with your team activities.";
         await turnContext.SendActivityAsync(MessageFactory.Text(welcomeMessage), cancellationToken);
     }
 }

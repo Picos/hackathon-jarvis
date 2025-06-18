@@ -22,7 +22,7 @@ public class AzureSpeechService : ISpeechService
 
         var speechKey = configuration["AzureServices:SpeechService:SubscriptionKey"];
         var speechRegion = configuration["AzureServices:SpeechService:Region"];
-        _wakeWord = configuration["AzureServices:SpeechService:WakeWord"] ?? "Hey AssistBot";
+        _wakeWord = configuration["AzureServices:SpeechService:WakeWord"] ?? "Hey Jarvis";
 
         if (string.IsNullOrEmpty(speechKey) || string.IsNullOrEmpty(speechRegion))
         {

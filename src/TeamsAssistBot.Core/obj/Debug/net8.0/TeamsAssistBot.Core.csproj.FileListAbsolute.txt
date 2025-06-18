@@ -1,0 +1,13 @@
+C:\Powell_Projects\Hackathon-Jarvis\hackathon-jarvis-1\src\TeamsAssistBot.Core\bin\Debug\net8.0\TeamsAssistBot.Core.deps.json
+C:\Powell_Projects\Hackathon-Jarvis\hackathon-jarvis-1\src\TeamsAssistBot.Core\bin\Debug\net8.0\TeamsAssistBot.Core.dll
+C:\Powell_Projects\Hackathon-Jarvis\hackathon-jarvis-1\src\TeamsAssistBot.Core\bin\Debug\net8.0\TeamsAssistBot.Core.pdb
+C:\Powell_Projects\Hackathon-Jarvis\hackathon-jarvis-1\src\TeamsAssistBot.Core\obj\Debug\net8.0\TeamsAssistBot.Core.csproj.AssemblyReference.cache
+C:\Powell_Projects\Hackathon-Jarvis\hackathon-jarvis-1\src\TeamsAssistBot.Core\obj\Debug\net8.0\TeamsAssistBot.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Powell_Projects\Hackathon-Jarvis\hackathon-jarvis-1\src\TeamsAssistBot.Core\obj\Debug\net8.0\TeamsAssistBot.Core.AssemblyInfoInputs.cache
+C:\Powell_Projects\Hackathon-Jarvis\hackathon-jarvis-1\src\TeamsAssistBot.Core\obj\Debug\net8.0\TeamsAssistBot.Core.AssemblyInfo.cs
+C:\Powell_Projects\Hackathon-Jarvis\hackathon-jarvis-1\src\TeamsAssistBot.Core\obj\Debug\net8.0\TeamsAssistBot.Core.csproj.CoreCompileInputs.cache
+C:\Powell_Projects\Hackathon-Jarvis\hackathon-jarvis-1\src\TeamsAssistBot.Core\obj\Debug\net8.0\TeamsAssistBot.Core.sourcelink.json
+C:\Powell_Projects\Hackathon-Jarvis\hackathon-jarvis-1\src\TeamsAssistBot.Core\obj\Debug\net8.0\TeamsAssistBot.Core.dll
+C:\Powell_Projects\Hackathon-Jarvis\hackathon-jarvis-1\src\TeamsAssistBot.Core\obj\Debug\net8.0\refint\TeamsAssistBot.Core.dll
+C:\Powell_Projects\Hackathon-Jarvis\hackathon-jarvis-1\src\TeamsAssistBot.Core\obj\Debug\net8.0\TeamsAssistBot.Core.pdb
+C:\Powell_Projects\Hackathon-Jarvis\hackathon-jarvis-1\src\TeamsAssistBot.Core\obj\Debug\net8.0\ref\TeamsAssistBot.Core.dll

@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Bot Framework Core -->
+    <PackageReference Include="Microsoft.Bot.Builder" Version="4.22.0" />
+    <PackageReference Include="Microsoft.Bot.Schema" Version="4.22.0" />
+    
+    <!-- Microsoft Graph Core -->
+    <PackageReference Include="Microsoft.Graph.Core" Version="3.1.20" />
+    
+    <!-- Azure SDK Core -->
+    <PackageReference Include="Azure.Core" Version="1.42.0" />
+    
+    <!-- JSON Processing -->
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    
+    <!-- Configuration -->
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.1" />
+  </ItemGroup>
+
+</Project>

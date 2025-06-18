@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jarvis Avatar Animation Demo</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .avatar-container {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 30px auto;
+            max-width: 600px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+        }
+
+        .avatar {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            margin: 0 auto 30px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .avatar-face {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            height: 80%;
+        }
+
+        .eyes {
+            display: flex;
+            justify-content: space-between;
+            width: 60px;
+            margin: 40px auto 20px;
+        }
+
+        .eye {
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .eye-pupil {
+            width: 10px;
+            height: 10px;
+            background: #333;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.2s ease;
+        }
+
+        .mouth {
+            width: 40px;
+            height: 20px;
+            border: 3px solid white;
+            border-top: none;
+            border-radius: 0 0 40px 40px;
+            margin: 20px auto;
+            transition: all 0.3s ease;
+        }
+
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin: 30px 0;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn.active {
+            background: rgba(255, 255, 255, 0.4);
+            border-color: rgba(255, 255, 255, 0.6);
+        }
+
+        .status {
+            margin: 20px 0;
+            font-size: 1.2em;
+            font-weight: bold;
+            min-height: 30px;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .feature {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .feature h3 {
+            margin-top: 0;
+            color: #4facfe;
+        }
+
+        /* Animation states */
+        .idle .eye {
+            animation: blink 4s infinite;
+        }
+
+        .listening .avatar {
+            animation: pulse 1.5s infinite;
+        }
+
+        .listening .eye-pupil {
+            transform: translate(-50%, -50%) scale(1.2);
+        }
+
+        .speaking .mouth {
+            animation: speak 0.5s infinite;
+        }
+
+        .processing .eye-pupil {
+            animation: thinking 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 95% { height: 20px; }
+            97.5% { height: 2px; }
+            100% { height: 20px; }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.9; }
+        }
+
+        @keyframes speak {
+            0%, 100% { height: 20px; width: 40px; }
+            25% { height: 15px; width: 35px; }
+            50% { height: 25px; width: 45px; }
+            75% { height: 18px; width: 38px; }
+        }
+
+        @keyframes thinking {
+            0%, 100% { transform: translate(-50%, -50%) translateX(0); }
+            25% { transform: translate(-50%, -50%) translateX(-3px); }
+            75% { transform: translate(-50%, -50%) translateX(3px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🤖 Jarvis Avatar Animation Demo</h1>
+        
+        <div class="avatar-container">
+            <div class="avatar" id="avatar">
+                <div class="avatar-face">
+                    <div class="eyes">
+                        <div class="eye">
+                            <div class="eye-pupil"></div>
+                        </div>
+                        <div class="eye">
+                            <div class="eye-pupil"></div>
+                        </div>
+                    </div>
+                    <div class="mouth"></div>
+                </div>
+            </div>
+            
+            <div class="status" id="status">Ready - Click a button to test animations</div>
+            
+            <div class="controls">
+                <button class="btn" onclick="setAvatarState('idle')">💤 Idle</button>
+                <button class="btn" onclick="setAvatarState('listening')">👂 Listening</button>
+                <button class="btn" onclick="setAvatarState('speaking')">🗣️ Speaking</button>
+                <button class="btn" onclick="setAvatarState('processing')">🤔 Processing</button>
+                <button class="btn" onclick="simulateBlink()">👁️ Blink</button>
+            </div>
+        </div>
+
+        <div class="features">
+            <div class="feature">
+                <h3>🎯 Real-time Audio Analysis</h3>
+                <p>Avatar responds to incoming audio with intensity-based pulsing and attention adjustments during listening state.</p>
+            </div>
+            
+            <div class="feature">
+                <h3>💬 Lip-sync Technology</h3>
+                <p>Advanced phoneme analysis generates realistic mouth movements synchronized with speech synthesis.</p>
+            </div>
+            
+            <div class="feature">
+                <h3>😊 Natural Expressions</h3>
+                <p>Contextual facial expressions including happiness, attention, and concentration levels.</p>
+            </div>
+            
+            <div class="feature">
+                <h3>⚡ State Management</h3>
+                <p>Seamless transitions between idle, listening, speaking, and processing states.</p>
+            </div>
+            
+            <div class="feature">
+                <h3>👁️ Intelligent Blinking</h3>
+                <p>Configurable natural blinking patterns with random timing for lifelike behavior.</p>
+            </div>
+            
+            <div class="feature">
+                <h3>🔧 Highly Configurable</h3>
+                <p>Customizable animation styles, blink frequencies, lip-sync sensitivity, and frame rates.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentState = 'idle';
+        let blinkInterval;
+
+        function setAvatarState(state) {
+            const avatar = document.getElementById('avatar');
+            const status = document.getElementById('status');
+            
+            // Remove all state classes
+            avatar.className = 'avatar';
+            
+            // Clear any existing intervals
+            if (blinkInterval) {
+                clearInterval(blinkInterval);
+                blinkInterval = null;
+            }
+            
+            // Update active button
+            document.querySelectorAll('.btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Apply new state
+            avatar.classList.add(state);
+            currentState = state;
+            
+            // Update status and start appropriate animations
+            switch(state) {
+                case 'idle':
+                    status.textContent = 'Idle - Natural blinking and subtle breathing';
+                    startIdleAnimation();
+                    break;
+                case 'listening':
+                    status.textContent = 'Listening - Attentive pulsing, responsive to audio input';
+                    break;
+                case 'speaking':
+                    status.textContent = 'Speaking - Lip-sync animation with mouth movements';
+                    break;
+                case 'processing':
+                    status.textContent = 'Processing - Thinking animation while AI generates response';
+                    break;
+            }
+        }
+
+        function startIdleAnimation() {
+            // Random blinking for idle state
+            blinkInterval = setInterval(() => {
+                if (currentState === 'idle') {
+                    simulateBlink();
+                }
+            }, Math.random() * 4000 + 2000); // Random interval between 2-6 seconds
+        }
+
+        function simulateBlink() {
+            const eyes = document.querySelectorAll('.eye');
+            eyes.forEach(eye => {
+                eye.style.height = '2px';
+                setTimeout(() => {
+                    eye.style.height = '20px';
+                }, 150);
+            });
+        }
+
+        // Initialize with idle state
+        window.onload = () => {
+            setAvatarState('idle');
+        };
+
+        // Simulate real-time updates
+        setInterval(() => {
+            if (currentState === 'listening') {
+                // Simulate audio intensity variations
+                const intensity = Math.random();
+                const avatar = document.getElementById('avatar');
+                avatar.style.opacity = 0.8 + (intensity * 0.2);
+            }
+        }, 100);
+    </script>
+</body>
+</html>

@@ -26,7 +26,7 @@ public class AzureOpenAIService : IAIService
         var apiKey = configuration["AzureServices:OpenAI:ApiKey"];
         _deploymentName = configuration["AzureServices:OpenAI:DeploymentName"] ?? "gpt-4";
         _maxTokens = int.Parse(configuration["AzureServices:OpenAI:MaxTokens"] ?? "1000");
-        _temperature = double.Parse(configuration["AzureServices:OpenAI:Temperature"] ?? "0.7");
+        _temperature = 0.7;
 
         if (string.IsNullOrEmpty(endpoint) || string.IsNullOrEmpty(apiKey))
         {

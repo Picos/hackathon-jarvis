@@ -8,19 +8,27 @@ namespace TeamsAssistBot.Infrastructure.Services;
 public class TeamsMeetingService : ITeamsMeetingService
 {
     private readonly ILogger<TeamsMeetingService> _logger;
+    private readonly IAvatarAnimationService? _avatarService;
     private readonly Dictionary<string, bool> _activeCalls;
+    private readonly Dictionary<string, bool> _avatarStreamingActive;
 
     public event EventHandler<AudioStreamData>? AudioDataReceived;
     public event EventHandler<string>? CallStateChanged;
     public event EventHandler<string>? ParticipantJoined;
     public event EventHandler<string>? ParticipantLeft;
 
-    public TeamsMeetingService(IConfiguration configuration, ILogger<TeamsMeetingService> logger)
+    public TeamsMeetingService(
+        IConfiguration configuration, 
+        ILogger<TeamsMeetingService> logger,
+        IAvatarAnimationService? avatarService = null)
     {
         _logger = logger;
+        _avatarService = avatarService;
         _activeCalls = new Dictionary<string, bool>();
+        _avatarStreamingActive = new Dictionary<string, bool>();
         
-        _logger.LogInformation("Simplified Teams Meeting Service initialized");
+        _logger.LogInformation("Teams Meeting Service initialized with avatar support: {AvatarEnabled}", 
+            _avatarService != null);
     }
 
     public async Task<string> JoinMeetingAsync(string meetingUrl, string displayName)
@@ -88,6 +96,12 @@ public class TeamsMeetingService : ITeamsMeetingService
             if (_activeCalls.ContainsKey(callId))
             {
                 _logger.LogInformation("Started media streaming for call: {CallId}", callId);
+                
+                // Start avatar video streaming if avatar service is available
+                if (_avatarService != null)
+                {
+                    await StartAvatarVideoStreamAsync(callId);
+                }
                 
                 // Start a background task to simulate audio data
                 _ = Task.Run(async () => await SimulateAudioStreamAsync(callId));
@@ -228,12 +242,146 @@ public class TeamsMeetingService : ITeamsMeetingService
         }
     }
 
+    private async Task StartAvatarVideoStreamAsync(string callId)
+    {
+        try
+        {
+            if (_avatarService == null)
+                return;
+
+            _logger.LogInformation("Starting avatar video stream for call: {CallId}", callId);
+            
+            // Mark avatar streaming as active
+            _avatarStreamingActive[callId] = true;
+            
+            // Start avatar video streaming loop
+            _ = Task.Run(async () => await StreamAvatarVideoAsync(callId));
+            
+            _logger.LogInformation("Avatar video streaming started for call: {CallId}", callId);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error starting avatar video stream for call: {CallId}", callId);
+        }
+    }
+
+    private async Task StopAvatarVideoStreamAsync(string callId)
+    {
+        try
+        {
+            if (_avatarStreamingActive.ContainsKey(callId))
+            {
+                _avatarStreamingActive[callId] = false;
+                _avatarStreamingActive.Remove(callId);
+                _logger.LogInformation("Stopped avatar video streaming for call: {CallId}", callId);
+            }
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error stopping avatar video stream for call: {CallId}", callId);
+        }
+    }
+
+    private async Task StreamAvatarVideoAsync(string callId)
+    {
+        try
+        {
+            if (_avatarService == null)
+                return;
+
+            while (_activeCalls.ContainsKey(callId) && 
+                   _activeCalls[callId] && 
+                   _avatarStreamingActive.GetValueOrDefault(callId, false))
+            {
+                // Get current avatar frame
+                var currentFrame = await _avatarService.GetCurrentFrameAsync(callId);
+                
+                if (currentFrame != null)
+                {
+                    // Convert avatar frame to video frame and send to Teams
+                    await SendAvatarFrameToTeamsAsync(callId, currentFrame);
+                }
+
+                // Wait for next frame (30 FPS = ~33ms)
+                await Task.Delay(33);
+            }
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error in avatar video streaming for call: {CallId}", callId);
+        }
+        finally
+        {
+            await StopAvatarVideoStreamAsync(callId);
+        }
+    }
+
+    private async Task SendAvatarFrameToTeamsAsync(string callId, AnimationFrame frame)
+    {
+        try
+        {
+            // In a real implementation, this would:
+            // 1. Render the animation frame to a video frame
+            // 2. Encode the frame for Teams video streaming
+            // 3. Send the frame via Teams Graph API or Bot Framework
+            
+            // For simulation, we log the avatar state and key animation properties
+            _logger.LogDebug("Streaming avatar frame for call {CallId}: State={State}, MouthOpen={MouthOpen}, Blink={Blink}", 
+                callId, frame.State, frame.MouthPosition.OpenAmount, frame.EyePosition.BlinkAmount);
+
+            // Simulate avatar visibility in Teams by creating virtual video feed
+            await SimulateTeamsAvatarDisplayAsync(callId, frame);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error sending avatar frame to Teams for call: {CallId}", callId);
+        }
+    }
+
+    private async Task SimulateTeamsAvatarDisplayAsync(string callId, AnimationFrame frame)
+    {
+        // Simulate Teams avatar display by logging detailed animation state
+        // In a real implementation, this would render the avatar and stream video
+        
+        var avatarStatus = $"Jarvis Avatar - {frame.State}";
+        
+        switch (frame.State)
+        {
+            case AvatarState.Idle:
+                avatarStatus += " (Natural blinking, ready to assist)";
+                break;
+            case AvatarState.Listening:
+                avatarStatus += $" (Attentive, focus level: {frame.Expression.Attention:F1})";
+                break;
+            case AvatarState.Speaking:
+                avatarStatus += $" (Speaking, mouth: {frame.MouthPosition.Shape}, intensity: {frame.MouthPosition.Intensity:F1})";
+                break;
+            case AvatarState.Processing:
+                avatarStatus += $" (Thinking, concentration: {frame.Expression.Concentration:F1})";
+                break;
+        }
+
+        // Log avatar display every 1 second to avoid spam
+        if (DateTime.UtcNow.Second % 1 == 0 && DateTime.UtcNow.Millisecond < 50)
+        {
+            _logger.LogInformation("Teams Avatar Display - Call {CallId}: {Status}", callId, avatarStatus);
+        }
+
+        await Task.CompletedTask;
+    }
+
     public void Dispose()
     {
         foreach (var callId in _activeCalls.Keys.ToList())
         {
             try
             {
+                // Stop avatar streaming
+                if (_avatarStreamingActive.ContainsKey(callId))
+                {
+                    StopAvatarVideoStreamAsync(callId).Wait();
+                }
+                
                 LeaveMeetingAsync(callId).Wait();
             }
             catch (Exception ex)
@@ -242,5 +390,6 @@ public class TeamsMeetingService : ITeamsMeetingService
             }
         }
         _activeCalls.Clear();
+        _avatarStreamingActive.Clear();
     }
 }

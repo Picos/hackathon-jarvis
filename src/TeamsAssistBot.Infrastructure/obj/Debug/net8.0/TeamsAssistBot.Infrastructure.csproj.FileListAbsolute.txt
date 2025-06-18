@@ -1,6 +1,0 @@
-C:\Powell_Projects\Hackathon-Jarvis\hackathon-jarvis-1\src\TeamsAssistBot.Infrastructure\obj\Debug\net8.0\TeamsAssistBot.Infrastructure.csproj.AssemblyReference.cache
-C:\Powell_Projects\Hackathon-Jarvis\hackathon-jarvis-1\src\TeamsAssistBot.Infrastructure\obj\Debug\net8.0\TeamsAssistBot.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
-C:\Powell_Projects\Hackathon-Jarvis\hackathon-jarvis-1\src\TeamsAssistBot.Infrastructure\obj\Debug\net8.0\TeamsAssistBot.Infrastructure.AssemblyInfoInputs.cache
-C:\Powell_Projects\Hackathon-Jarvis\hackathon-jarvis-1\src\TeamsAssistBot.Infrastructure\obj\Debug\net8.0\TeamsAssistBot.Infrastructure.AssemblyInfo.cs
-C:\Powell_Projects\Hackathon-Jarvis\hackathon-jarvis-1\src\TeamsAssistBot.Infrastructure\obj\Debug\net8.0\TeamsAssistBot.Infrastructure.csproj.CoreCompileInputs.cache
-C:\Powell_Projects\Hackathon-Jarvis\hackathon-jarvis-1\src\TeamsAssistBot.Infrastructure\obj\Debug\net8.0\TeamsAssistBot.Infrastructure.sourcelink.json

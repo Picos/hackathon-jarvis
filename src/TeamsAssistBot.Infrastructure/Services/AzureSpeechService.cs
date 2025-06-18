@@ -37,12 +37,14 @@ public class AzureSpeechService : ISpeechService
     {
         try
         {
-            using var audioStream = new MemoryStream(audioData.AudioData);
-            using var audioFormat = AudioStreamFormat.GetWaveFormatPCM(
-                (uint)audioData.SampleRate, 
-                (byte)audioData.BitsPerSample, 
-                (byte)audioData.Channels);
-            using var audioInput = AudioConfig.FromStreamInput(audioStream);
+        using var audioFormat = AudioStreamFormat.GetWaveFormatPCM(
+            (uint)audioData.SampleRate, 
+            (byte)audioData.BitsPerSample, 
+            (byte)audioData.Channels);
+        using var audioInputStream = AudioInputStream.CreatePushStream(audioFormat);
+        audioInputStream.Write(audioData.AudioData);
+        audioInputStream.Close();
+        using var audioInput = AudioConfig.FromStreamInput(audioInputStream);
             using var recognizer = new SpeechRecognizer(_speechConfig, audioInput);
 
             var result = await recognizer.RecognizeOnceAsync();

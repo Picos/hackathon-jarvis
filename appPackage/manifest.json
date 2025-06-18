@@ -1,0 +1,57 @@
+{
+  "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.16/MicrosoftTeams.schema.json",
+  "manifestVersion": "1.16",
+  "version": "1.0.0",
+  "id": "47fc3eac-34c0-472f-a685-acb565d0c7b3",
+  "packageName": "com.teamsassistbot.jarvis",
+  "developer": {
+    "name": "Teams Assist Bot",
+    "websiteUrl": "https://powell78jarvisbbm.eu.ngrok.io",
+    "privacyUrl": "https://powell78jarvisbbm.eu.ngrok.io/privacy",
+    "termsOfUseUrl": "https://powell78jarvisbbm.eu.ngrok.io/terms"
+  },
+  "icons": {
+    "color": "color.png",
+    "outline": "outline.png"
+  },
+  "name": {
+    "short": "Jarvis",
+    "full": "Jarvis - AI Meeting Assistant"
+  },
+  "description": {
+    "short": "AI-powered assistant for Microsoft Teams meetings with speech recognition",
+    "full": "Jarvis is an advanced AI assistant that enhances your Microsoft Teams meetings with real-time speech-to-text transcription, wake word detection, and intelligent responses using Azure OpenAI. Simply say 'Hey Jarvis' to interact with your AI meeting companion."
+  },
+  "accentColor": "#FFFFFF",
+  "bots": [
+    {
+      "botId": "47fc3eac-34c0-472f-a685-acb565d0c7b3",
+      "scopes": [
+        "personal",
+        "team",
+        "groupchat"
+      ],
+      "supportsFiles": false,
+      "isNotificationOnly": false,
+      "supportsCalling": true,
+      "supportsVideo": true
+    }
+  ],
+  "permissions": [
+    "identity",
+    "messageTeamMembers"
+  ],
+  "validDomains": [
+    "powell78jarvisbbm.eu.ngrok.io"
+  ],
+  "webApplicationInfo": {
+    "id": "47fc3eac-34c0-472f-a685-acb565d0c7b3",
+    "resource": "https://graph.microsoft.com"
+  },
+  "defaultInstallScope": "team",
+  "defaultGroupCapability": {
+    "team": "tab",
+    "groupchat": "bot",
+    "meetings": "bot"
+  }
+}

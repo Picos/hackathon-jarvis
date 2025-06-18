@@ -15,12 +15,9 @@ public class AzureOpenAIService : IAIService
     private readonly string _deploymentName;
     private readonly int _maxTokens;
     private readonly double _temperature;
-    private readonly ISpeechService _speechService;
-
-    public AzureOpenAIService(IConfiguration configuration, ILogger<AzureOpenAIService> logger, ISpeechService speechService)
+    public AzureOpenAIService(IConfiguration configuration, ILogger<AzureOpenAIService> logger)
     {
         _logger = logger;
-        _speechService = speechService;
 
         var endpoint = configuration["AzureServices:OpenAI:Endpoint"];
         var apiKey = configuration["AzureServices:OpenAI:ApiKey"];
@@ -102,16 +99,16 @@ public class AzureOpenAIService : IAIService
     {
         try
         {
-            var audioData = await _speechService.SynthesizeSpeechAsync(responseText);
+            // Note: Audio synthesis should be handled by the speech service
+            // This method now returns text-only response
+            _logger.LogInformation("Creating audio response for call {CallId}: {ResponseText}", callId, responseText);
 
             return new AIResponse
             {
                 ResponseText = responseText,
                 CallId = callId,
                 Timestamp = DateTime.UtcNow,
-                Type = ResponseType.Both,
-                AudioResponse = audioData,
-                AudioFormat = "wav"
+                Type = ResponseType.Text
             };
         }
         catch (Exception ex)
